@@ -23,8 +23,7 @@ namespace n11Api
             string apiSifresi = textBox2.Text;
             Form1 frm = new Form1(apiAnahtari, apiSifresi);
              frm.Show();
-            this.Close();
-           
+            this.Hide();       
 
         }
     }

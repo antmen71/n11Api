@@ -38,11 +38,7 @@ namespace n11Api
         static string apiSifresi1;
 
 
-        public Form1()
-        {
-            InitializeComponent();
-
-        }
+        
 
         public Form1(string apiAnahtari, string apiSifresi)
         {
@@ -50,10 +46,10 @@ namespace n11Api
             apiAnahtari1 = apiAnahtari;
             apiSifresi1 = apiSifresi;
         }
-        
-        ProductBasic[] products = getProds();
 
-       
+        ProductBasic[] products = getProds();
+        GetTopLevelCategoriesResponse categories = getTopCat();
+
 
 
 
@@ -61,7 +57,7 @@ namespace n11Api
 
         private void Form1_Load(object sender, EventArgs e)
         {
- GetTopLevelCategoriesResponse categories = getTopCat();
+ 
 
             foreach (var item in categories.categoryList)
             {
@@ -74,7 +70,7 @@ namespace n11Api
 
             }
 
-            getProds();
+            
 
             foreach (var prod in products)
             {
@@ -116,8 +112,8 @@ namespace n11Api
             setProxy();
 
             var authentication1 = new com.n11.api.Authentication();
-            authentication1.appKey = "0269671d-74f9-492e-8ab4-8d3825c48715"; //api anahtarınız
-            authentication1.appSecret = "VOZHd5LSaHXDdJXZ";//api şifeniz
+            authentication1.appKey = apiAnahtari1; //api anahtarınız
+            authentication1.appSecret = apiSifresi1;//api şifeniz
 
 
             com.n11.api.GetProductListRequest ProductListRequest = new com.n11.api.GetProductListRequest();
@@ -234,8 +230,8 @@ namespace n11Api
         private static Product getProdDetails(long prodId)
         {
             var authentication1 = new com.n11.api.Authentication();
-            authentication1.appKey = "0269671d-74f9-492e-8ab4-8d3825c48715"; //api anahtarınız
-            authentication1.appSecret = "VOZHd5LSaHXDdJXZ";//api şifeniz
+            authentication1.appKey = apiAnahtari1; //api anahtarınız
+            authentication1.appSecret = apiSifresi1;//api şifeniz
 
 
             com.n11.api.GetProductByProductIdRequest ProductRequest = new com.n11.api.GetProductByProductIdRequest();
@@ -254,8 +250,8 @@ namespace n11Api
         {
 
             var authentication1 = new n11Api.ServiceReference1.Authentication();
-            authentication1.appKey = "0269671d-74f9-492e-8ab4-8d3825c48715"; //api anahtarınız
-            authentication1.appSecret = "VOZHd5LSaHXDdJXZ";//api şifeniz
+            authentication1.appKey = apiAnahtari1; //api anahtarınız
+            authentication1.appSecret = apiSifresi1;//api şifeniz
 
 
             CategoryServicePortClient port = new CategoryServicePortClient();
@@ -364,8 +360,8 @@ namespace n11Api
         private void button1_Click_1(object sender, EventArgs e)
         {
             var authentication1 = new com.n11.api.Authentication();
-            authentication1.appKey = "0269671d-74f9-492e-8ab4-8d3825c48715"; //api anahtarınız
-            authentication1.appSecret = "VOZHd5LSaHXDdJXZ";//api şifeniz
+            authentication1.appKey = apiAnahtari1; //api anahtarınız
+            authentication1.appSecret = apiSifresi1;//api şifeniz
 
             ProductServicePortService prodServ = new ProductServicePortService();
 
@@ -420,8 +416,8 @@ namespace n11Api
         {
 
             var authentication = new n11Api.ServiceReference1.Authentication();
-            authentication.appKey = "0269671d-74f9-492e-8ab4-8d3825c48715"; //api anahtarınız
-            authentication.appSecret = "VOZHd5LSaHXDdJXZ";//api şifeniz
+            authentication.appKey = apiAnahtari1; //api anahtarınız
+            authentication.appSecret = apiSifresi1;//api şifeniz
 
             CategoryServicePortClient proxy = new CategoryServicePortClient();
             GetParentCategoryRequest request = new GetParentCategoryRequest();
@@ -513,8 +509,8 @@ namespace n11Api
         private void btnGuncelle_Click(object sender, EventArgs e)
         {
             var authentication1 = new com.n11.api.Authentication();
-            authentication1.appKey = "0269671d-74f9-492e-8ab4-8d3825c48715"; //api anahtarınız
-            authentication1.appSecret = "VOZHd5LSaHXDdJXZ";//api şifeniz
+            authentication1.appKey = apiAnahtari1; //api anahtarınız
+            authentication1.appSecret = apiSifresi1;//api şifeniz
 
             ProductServicePortService prodServ = new ProductServicePortService();
 
