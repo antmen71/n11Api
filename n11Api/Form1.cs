@@ -31,19 +31,37 @@ namespace n11Api
             }
         }
 
-        //Product product = new Product();
-        ProductBasic[] products = getProds();
-        //SubCategory subCategory = NewMethod3();
-        GetTopLevelCategoriesResponse categories = getTopCat();
-        //SubCategoryData[] subCategory = getSubCat(long catIS);
+
+
+
+        static string apiAnahtari1;
+        static string apiSifresi1;
+
 
         public Form1()
         {
             InitializeComponent();
+
         }
+
+        public Form1(string apiAnahtari, string apiSifresi)
+        {
+            InitializeComponent();
+            apiAnahtari1 = apiAnahtari;
+            apiSifresi1 = apiSifresi;
+        }
+        
+        ProductBasic[] products = getProds();
+
+       
+
+
+
+
 
         private void Form1_Load(object sender, EventArgs e)
         {
+ GetTopLevelCategoriesResponse categories = getTopCat();
 
             foreach (var item in categories.categoryList)
             {
@@ -77,8 +95,10 @@ namespace n11Api
         private static GetTopLevelCategoriesResponse getTopCat()
         {
             var authentication = new n11Api.ServiceReference1.Authentication();
-            authentication.appKey = "0269671d-74f9-492e-8ab4-8d3825c48715"; //api anahtarınız
-            authentication.appSecret = "VOZHd5LSaHXDdJXZ";//api şifeniz
+            
+            authentication.appKey = apiAnahtari1;  //api anahtarınız
+
+            authentication.appSecret = apiSifresi1;//api şifeniz
 
             CategoryServicePortClient proxy = new CategoryServicePortClient();
 
@@ -115,17 +135,17 @@ namespace n11Api
         private static Product product(long prodId)
         {
             var authentication1 = new com.n11.api.Authentication();
-            authentication1.appKey = "0269671d-74f9-492e-8ab4-8d3825c48715"; //api anahtarınız
-            authentication1.appSecret = "VOZHd5LSaHXDdJXZ";//api şifeniz
+            authentication1.appKey = apiAnahtari1; //api anahtarınız
+            authentication1.appSecret = apiSifresi1;//api şifeniz
 
             ProductServicePortService proxy = new ProductServicePortService();
             GetProductByProductIdRequest request = new GetProductByProductIdRequest();
             request.auth = authentication1;
             request.productId = prodId;
-            
+
             GetProductByProductIdResponse response = new GetProductByProductIdResponse();
             var product = proxy.GetProductByProductId(request).product;
-            
+
             return product;
 
         }
@@ -169,13 +189,13 @@ namespace n11Api
             urunResimlericmbBox.Text = "";
             var lstItem = listBox2.SelectedItem as ProductBasic;
 
-        ProductBasic[] products = getProds();
+            ProductBasic[] products = getProds();
 
 
             foreach (var produc in products)
                 if (produc.id == lstItem.id)
                 {
-                    
+
                     var prod = product(produc.id);
                     Product produ = getProdDetails(produc.id);
 
@@ -202,12 +222,12 @@ namespace n11Api
                     //        cmbBoxStokOpsiyonlariListesi.Items.Add(stokOpsList[i].attributes[0].name + "-" + stokOpsList[i].attributes[0].value);
 
 
-                        txtFullKategori.Text = prod.category.fullName;
-                        txtFiyati.Text = prod.price.ToString();
-                        txtSatisStatusu.Text = retSaleStatus(Convert.ToInt32(produc.saleStatus));
-                        txtOnayDurumu.Text = retAppStatus(Convert.ToInt32(produc.approvalStatus));
+                    txtFullKategori.Text = prod.category.fullName;
+                    txtFiyati.Text = prod.price.ToString();
+                    txtSatisStatusu.Text = retSaleStatus(Convert.ToInt32(produc.saleStatus));
+                    txtOnayDurumu.Text = retAppStatus(Convert.ToInt32(produc.approvalStatus));
 
-                    } 
+                }
 
         }
 
@@ -286,12 +306,12 @@ namespace n11Api
             lstBxikinciKategori.Enabled = true;
             lstBxUcuncuKategori.Enabled = true;
             lstBxBirinciKategori.Enabled = true;
-            
+
             var CatId = lstBxAnaKategori.SelectedItem as Category;
             SubCategoryData subData = getSubCat(CatId.id).First();
             seciliKategori = subData.id.ToString();
 
-           
+
             if (subData.subCategoryList == null)
             {
                 lstBxBirinciKategori.Items.Add("Alt kategori bulunamadı");
@@ -330,12 +350,12 @@ namespace n11Api
                 {
 
                     for (int i = 0; i < subData.subCategoryList.Length; i++)
-                        lstBxUcuncuKategori.Items.Add(subData.subCategoryList[i].id.ToString()+"-"+ subData.subCategoryList[i].name);
+                        lstBxUcuncuKategori.Items.Add(subData.subCategoryList[i].id.ToString() + "-" + subData.subCategoryList[i].name);
 
                 }
             }
         }
-        
+
         private void prodPrepDayLxl_Click(object sender, EventArgs e)
         {
 
@@ -362,7 +382,7 @@ namespace n11Api
             saveRequest.product.category.id = Convert.ToInt32(txtUrunKategoriNo.Text);
             saveRequest.product.price = Convert.ToDecimal(txtFiyati.Text);
             saveRequest.product.currencyType = comboBox1.Text;
-            
+
             ProductImage prImg = new ProductImage();
             ProductImage[] pr = new ProductImage[1];
             pr[0] = prImg;
@@ -373,7 +393,7 @@ namespace n11Api
 
             saveRequest.product.productCondition = txtUrunDurumu.Text;
             saveRequest.product.preparingDay = txtprodPrepDay.Text;
-            saveRequest.product.shipmentTemplate = "dizlik";
+            saveRequest.product.shipmentTemplate = txtKargoSablonu.Text;
 
             ProductSkuRequest prStock = new ProductSkuRequest();
             prStock.quantity = txtStokMiktari.Text;
@@ -484,10 +504,10 @@ namespace n11Api
             urunResimlericmbBox.Items.Clear();
             urunResimlericmbBox.SelectedIndex = -1;
             urunResimlericmbBox.Text = "";
-            txtprodPrepDay.Text = "21";
-            txtUrunDurumu.Text = "1";
-            txtKargoSablonu.Text = "dizlik";
-            txtStokMiktari.Text = "1";
+            txtprodPrepDay.Text = "";
+            txtUrunDurumu.Text = "";
+            txtKargoSablonu.Text = "";
+            txtStokMiktari.Text = "";
         }
 
         private void btnGuncelle_Click(object sender, EventArgs e)
@@ -498,15 +518,15 @@ namespace n11Api
 
             ProductServicePortService prodServ = new ProductServicePortService();
 
-           
+
 
         }
 
-        int prImgAdet=1;
+        int prImgAdet = 1;
 
         private void button5_Click(object sender, EventArgs e)
         {
-            
+
             ProductImage prImg = new ProductImage();
             ProductImage[] pr = new ProductImage[prImgAdet];
             string resimUrl = urunResimlericmbBox.Text.Replace("https", "http");
@@ -515,10 +535,16 @@ namespace n11Api
             prImg.order = txtBxUrunResimOrder.Text;
 
             urunResimlericmbBox.Items.Add(prImg);
-            
+
             prImgAdet++;
 
 
+        }
+
+        private void button5_Click_1(object sender, EventArgs e)
+        {
+            //apiAnahtari = textBox2.Text;
+            //apiSifresi = textBox3.Text;
         }
     }
 }

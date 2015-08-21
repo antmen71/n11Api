@@ -28,3 +28,4 @@ C:\Users\TRISORAN\Documents\Visual Studio 2015\Projects\n11Api\n11Api\obj\Debug\
 C:\Users\TRISORAN\Documents\Visual Studio 2015\Projects\n11Api\n11Api\obj\Debug\n11Api.Form2.resources
 C:\Users\TRISORAN\Documents\Visual Studio 2015\Projects\n11Api\n11Api\obj\Debug\n11Api.Properties.Resources.resources
 C:\Users\TRISORAN\Documents\Visual Studio 2015\Projects\n11Api\n11Api\obj\Debug\n11Api.csproj.GenerateResource.Cache
+C:\Users\TRISORAN\Documents\Visual Studio 2015\Projects\n11Api\n11Api\obj\Debug\n11Api.Form3.resources

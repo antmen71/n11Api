@@ -71,7 +71,6 @@
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.cmbBoxStokOpsiyonlariListesi = new System.Windows.Forms.ComboBox();
             this.button4 = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -85,8 +84,12 @@
             this.label14 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
-            this.btnGuncelle = new System.Windows.Forms.Button();
             this.txtBxUrunResimOrder = new System.Windows.Forms.TextBox();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.button5 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lstBxAnaKategori
@@ -456,14 +459,6 @@
             this.textBox1.Size = new System.Drawing.Size(1239, 20);
             this.textBox1.TabIndex = 50;
             // 
-            // cmbBoxStokOpsiyonlariListesi
-            // 
-            this.cmbBoxStokOpsiyonlariListesi.FormattingEnabled = true;
-            this.cmbBoxStokOpsiyonlariListesi.Location = new System.Drawing.Point(1007, 679);
-            this.cmbBoxStokOpsiyonlariListesi.Name = "cmbBoxStokOpsiyonlariListesi";
-            this.cmbBoxStokOpsiyonlariListesi.Size = new System.Drawing.Size(220, 21);
-            this.cmbBoxStokOpsiyonlariListesi.TabIndex = 51;
-            // 
             // button4
             // 
             this.button4.Location = new System.Drawing.Point(817, 680);
@@ -606,16 +601,6 @@
             this.label16.TabIndex = 53;
             this.label16.Text = "*";
             // 
-            // btnGuncelle
-            // 
-            this.btnGuncelle.Location = new System.Drawing.Point(899, 679);
-            this.btnGuncelle.Name = "btnGuncelle";
-            this.btnGuncelle.Size = new System.Drawing.Size(75, 23);
-            this.btnGuncelle.TabIndex = 54;
-            this.btnGuncelle.Text = "Güncelle";
-            this.btnGuncelle.UseVisualStyleBackColor = true;
-            this.btnGuncelle.Click += new System.EventHandler(this.btnGuncelle_Click);
-            // 
             // txtBxUrunResimOrder
             // 
             this.txtBxUrunResimOrder.Location = new System.Drawing.Point(1176, 411);
@@ -623,14 +608,60 @@
             this.txtBxUrunResimOrder.Size = new System.Drawing.Size(53, 20);
             this.txtBxUrunResimOrder.TabIndex = 56;
             // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(908, 680);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(76, 13);
+            this.label17.TabIndex = 57;
+            this.label17.Text = "Api anahtarınız";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(908, 711);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(57, 13);
+            this.label18.TabIndex = 58;
+            this.label18.Text = "Api şifreniz";
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(990, 673);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(168, 20);
+            this.textBox2.TabIndex = 59;
+            // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(990, 704);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(168, 20);
+            this.textBox3.TabIndex = 60;
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(1164, 673);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(54, 51);
+            this.button5.TabIndex = 61;
+            this.button5.Text = "Kaydet";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click_1);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(1239, 750);
+            this.Controls.Add(this.button5);
+            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.label18);
+            this.Controls.Add(this.label17);
             this.Controls.Add(this.txtBxUrunResimOrder);
-            this.Controls.Add(this.btnGuncelle);
             this.Controls.Add(this.label16);
             this.Controls.Add(this.label15);
             this.Controls.Add(this.label14);
@@ -644,7 +675,6 @@
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.button4);
-            this.Controls.Add(this.cmbBoxStokOpsiyonlariListesi);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button3);
@@ -741,7 +771,6 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.ComboBox cmbBoxStokOpsiyonlariListesi;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
@@ -755,8 +784,12 @@
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.Button btnGuncelle;
         private System.Windows.Forms.TextBox txtBxUrunResimOrder;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.Button button5;
     }
 }
 
