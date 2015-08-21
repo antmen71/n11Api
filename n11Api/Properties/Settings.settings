@@ -1,0 +1,12 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="n11Api.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="n11Api_com_n11_api_ProductServicePortService" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">https://api.n11.com/ws/productService/</Value>
+    </Setting>
+    <Setting Name="n11Api_com_n11_api1_CategoryServicePortService" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">https://api.n11.com/ws/categoryService/</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

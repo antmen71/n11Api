@@ -1,0 +1,975 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:sch="http://www.n11.com/ws/schemas" xmlns:tns="http://www.n11.com/ws/schemas" targetNamespace="http://www.n11.com/ws/schemas" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xs:schema xmlns:n11="http://www.n11.com/ws/schemas" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://www.n11.com/ws/schemas" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="GetProductByProductIdRequest">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="auth" type="n11:Authentication" />
+            <xs:element name="productId" type="xs:long" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetProductByProductIdResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="result" type="n11:ResultInfo" />
+            <xs:element name="product" type="n11:Product" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetProductBySellerCodeRequest">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="auth" type="n11:Authentication" />
+            <xs:element name="sellerCode" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetProductBySellerCodeResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="result" type="n11:ResultInfo" />
+            <xs:element name="product" type="n11:Product" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetProductListRequest">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="auth" type="n11:Authentication" />
+            <xs:element name="pagingData" type="n11:RequestPagingData" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetProductListResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="result" type="n11:ResultInfo" />
+            <xs:element name="products" type="n11:ProductBasicList" />
+            <xs:element name="pagingData" type="n11:PagingData" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SearchProductsRequest">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="auth" type="n11:Authentication" />
+            <xs:element name="pagingData" type="n11:RequestPagingData" />
+            <xs:element name="productSearch" type="n11:ProductSearch" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SearchProductsResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="result" type="n11:ResultInfo" />
+            <xs:element name="products" type="n11:ProductBasicList" />
+            <xs:element name="pagingData" type="n11:PagingData" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="UpdateProductPriceByIdRequest">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="auth" type="n11:Authentication" />
+            <xs:element name="productId" type="xs:long" />
+            <xs:element name="price" type="xs:decimal" />
+            <xs:element name="currencyType" type="xs:integer" />
+            <xs:element name="stockItems" type="n11:ProductSkuBasicRequestItemList" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="UpdateProductPriceByIdResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="result" type="n11:ResultInfo" />
+            <xs:element name="product" type="n11:ProductBasic" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="UpdateProductPriceBySellerCodeRequest">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="auth" type="n11:Authentication" />
+            <xs:element name="productSellerCode" type="xs:string" />
+            <xs:element name="price" type="xs:decimal" />
+            <xs:element name="currencyType" type="xs:integer" />
+            <xs:element name="stockItems" type="n11:ProductSkuBasicRequestItemList" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="UpdateProductPriceBySellerCodeResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="result" type="n11:ResultInfo" />
+            <xs:element name="product" type="n11:ProductBasic" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="DeleteProductByIdRequest">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="auth" type="n11:Authentication" />
+            <xs:element name="productId" type="xs:long" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="DeleteProductByIdResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="result" type="n11:ResultInfo" />
+            <xs:element name="product" type="n11:ProductBasic" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="DeleteProductBySellerCodeRequest">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="auth" type="n11:Authentication" />
+            <xs:element name="productSellerCode" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="DeleteProductBySellerCodeResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="result" type="n11:ResultInfo" />
+            <xs:element name="product" type="n11:ProductBasic" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SaveProductResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="result" type="n11:ResultInfo" />
+            <xs:element name="product" type="n11:ProductBasic" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SaveProductRequest">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="auth" type="n11:Authentication" />
+            <xs:element name="product" type="n11:ProductRequest" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="UpdateDiscountValueByProductIdRequest">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="auth" type="n11:Authentication" />
+            <xs:element name="productId" type="xs:long" />
+            <xs:element name="productDiscount" type="n11:SellerProductDiscount" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="UpdateDiscountValueByProductIdResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="result" type="n11:ResultInfo" />
+            <xs:element name="product" type="n11:ProductBasic" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="UpdateDiscountValueBySellerCodeRequest">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="auth" type="n11:Authentication" />
+            <xs:element name="productSellerCode" type="xs:string" />
+            <xs:element name="productDiscount" type="n11:SellerProductDiscount" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="UpdateDiscountValueBySellerCodeResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="result" type="n11:ResultInfo" />
+            <xs:element name="product" type="n11:ProductBasic" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetProductQuestionListRequest">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="auth" type="n11:Authentication" />
+            <xs:element name="productQuestionSearch" type="n11:ProductQuestionSearch" />
+            <xs:element name="pagingData" type="n11:RequestPagingData" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetProductQuestionListResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="productQuestions" type="n11:ProductQuestionList" />
+            <xs:element name="pagingData" type="n11:PagingData" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetProductQuestionDetailRequest">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="auth" type="n11:Authentication" />
+            <xs:element name="productQuestionId" type="xs:long" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetProductQuestionDetailResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="productQuestion" type="n11:ProductQuestionDetail" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SaveProductAnswerRequest">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="auth" type="n11:Authentication" />
+            <xs:element name="productQuestionId" type="xs:long" />
+            <xs:element name="answer" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:complexType name="Product">
+        <xs:sequence>
+          <xs:element name="id" type="xs:long" />
+          <xs:element name="title" type="xs:string" />
+          <xs:element name="subtitle" type="xs:string" />
+          <xs:element name="displayPrice" type="xs:decimal" />
+          <xs:element name="price" type="xs:decimal" />
+          <xs:element name="productSellerCode" type="xs:string" />
+          <xs:element name="description" type="xs:string" />
+          <xs:element name="category" type="n11:Category" />
+          <xs:element name="specialProductInfoList" nillable="true" type="n11:SpecialProductInfoList" />
+          <xs:element name="preparingDay" type="xs:integer" />
+          <xs:element name="saleStartDate" type="xs:string" />
+          <xs:element name="saleEndDate" type="xs:string" />
+          <xs:element name="productCondition" type="xs:string" />
+          <xs:element name="expirationDate" type="xs:string" />
+          <xs:element name="images" type="n11:ProductImageList" />
+          <xs:element name="stockItems" type="n11:ProductSkuList" />
+          <xs:element name="discount" type="n11:ProductDiscount" />
+          <xs:element name="shipmentTemplate" type="xs:string" />
+          <xs:element name="attributes" nillable="true" type="n11:ProductAttributeList" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="SpecialProductInfoList">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" name="specialProductInfo" type="n11:SpecialProductInfoApiModel" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ProductBasicList">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" name="product" type="n11:ProductBasic" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ProductRequest">
+        <xs:sequence>
+          <xs:element name="productSellerCode" type="xs:string" />
+          <xs:element name="title" type="xs:string" />
+          <xs:element name="subtitle" type="xs:string" />
+          <xs:element name="description" type="xs:string" />
+          <xs:element name="category" type="n11:CategoryRequest" />
+          <xs:element name="specialProductInfoList" nillable="true" type="n11:SpecialProductInfoList" />
+          <xs:element name="price" type="xs:decimal" />
+          <xs:element name="currencyType" type="xs:integer" />
+          <xs:element name="images" type="n11:ProductImageList" />
+          <xs:element name="approvalStatus" nillable="true" type="xs:integer" />
+          <xs:element name="attributes" type="n11:ProductAttributeRequestList" />
+          <xs:element name="saleStartDate" type="xs:string" />
+          <xs:element name="saleEndDate" type="xs:string" />
+          <xs:element name="productionDate" type="xs:string" />
+          <xs:element name="expirationDate" type="xs:string" />
+          <xs:element name="productCondition" type="xs:string" />
+          <xs:element name="preparingDay" type="xs:integer" />
+          <xs:element name="discount" type="n11:ProductDiscountRequest" />
+          <xs:element name="shipmentTemplate" type="xs:string" />
+          <xs:element name="stockItems" type="n11:ProductSkuRequestList" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ProductBasic">
+        <xs:sequence>
+          <xs:element name="id" type="xs:long" />
+          <xs:element name="productSellerCode" type="xs:string" />
+          <xs:element name="title" type="xs:string" />
+          <xs:element name="subtitle" type="xs:string" />
+          <xs:element name="price" type="xs:decimal" />
+          <xs:element name="displayPrice" type="xs:decimal" />
+          <xs:element name="saleStatus" type="xs:integer" />
+          <xs:element name="approvalStatus" nillable="true" type="xs:integer" />
+          <xs:element name="stockItems" type="n11:ProductSkuList" />
+          <xs:element name="oldPrice" type="xs:decimal" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ProductData">
+        <xs:sequence>
+          <xs:element name="version" type="xs:long" />
+          <xs:element name="subTitle" type="xs:string" />
+          <xs:element name="producedDate" type="xs:string" />
+          <xs:element name="expireDate" type="xs:string" />
+          <xs:element name="saleEndDate" type="xs:string" />
+          <xs:element name="saleStartDate" type="xs:string" />
+          <xs:element name="description" type="xs:string" />
+          <xs:element name="price" type="xs:decimal" />
+          <xs:element name="maxPurchaseQuantity" type="xs:integer" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ProductQuestion">
+        <xs:sequence>
+          <xs:element name="id" type="xs:long" />
+          <xs:element name="productId" type="xs:long" />
+          <xs:element name="productTitle" type="xs:string" />
+          <xs:element name="questionSubject" type="xs:string" />
+          <xs:element name="question" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ProductQuestionList">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" name="productQuestion" type="n11:ProductQuestion" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ProductQuestionDetail">
+        <xs:sequence>
+          <xs:element name="productId" type="xs:long" />
+          <xs:element name="productTitle" type="xs:string" />
+          <xs:element name="questionSubject" type="xs:string" />
+          <xs:element name="question" type="xs:string" />
+          <xs:element name="fullName" type="xs:string" />
+          <xs:element name="email" type="xs:string" />
+          <xs:element name="productStatus" type="xs:string" />
+          <xs:element name="status" type="xs:string" />
+          <xs:element name="questionDate" type="xs:date" />
+          <xs:element name="answeredDate" type="xs:date" />
+          <xs:element name="sellerExpose" type="xs:string" />
+          <xs:element name="buyerExpose" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Category">
+        <xs:sequence>
+          <xs:element name="id" type="xs:long" />
+          <xs:element name="name" type="xs:string" />
+          <xs:element name="fullName" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="CategoryRequest">
+        <xs:sequence>
+          <xs:element name="id" type="xs:long" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="SpecialProductInfoApiModel">
+        <xs:sequence>
+          <xs:element name="key" type="xs:string" />
+          <xs:element name="value" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ProductImage">
+        <xs:sequence>
+          <xs:element name="url" type="xs:string" />
+          <xs:element name="order" type="xs:integer" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ProductImageList">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" name="image" type="n11:ProductImage" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ProductSku">
+        <xs:complexContent mixed="false">
+          <xs:extension base="n11:ProductSkuBasic">
+            <xs:sequence>
+              <xs:element name="id" type="xs:long" />
+              <xs:element name="version" type="xs:long" />
+              <xs:element name="quantity" type="xs:integer" />
+              <xs:element name="attributes" type="n11:ProductAttributeList" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="ProductSkuBasic">
+        <xs:complexContent mixed="false">
+          <xs:extension base="n11:ProductSkuBasicRequest">
+            <xs:sequence>
+              <xs:element name="currencyAmount" type="xs:decimal" />
+              <xs:element name="displayPrice" type="xs:decimal" />
+              <xs:element name="oldOptionPrice" type="xs:decimal" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="ProductSkuBasicRequest">
+        <xs:sequence>
+          <xs:element name="sellerStockCode" type="xs:string" />
+          <xs:element name="optionPrice" type="xs:decimal" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ProductSkuBasicItemList">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" name="stockItem" type="n11:ProductSkuBasic" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ProductSkuBasicRequestItemList">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" name="stockItem" type="n11:ProductSkuBasicRequest" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ProductSkuItemList">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" name="stockItem" type="n11:ProductSku" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ProductSkuRequest">
+        <xs:sequence>
+          <xs:element name="quantity" type="xs:integer" />
+          <xs:element name="sellerStockCode" type="xs:string" />
+          <xs:element name="attributes" type="n11:ProductAttributeRequestList" />
+          <xs:element name="optionPrice" type="xs:decimal" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="StockItem">
+        <xs:sequence>
+          <xs:element name="id" type="xs:long" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="StockItemForAddStockWithId">
+        <xs:sequence>
+          <xs:element name="id" type="xs:long" />
+          <xs:element name="quantityToIncrease" type="xs:integer" />
+          <xs:element name="version" type="xs:long" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="StockItemForUpdateStockWithId">
+        <xs:sequence>
+          <xs:element name="id" type="xs:long" />
+          <xs:element name="quantity" type="xs:integer" />
+          <xs:element name="version" type="xs:long" />
+          <xs:element name="delist" nillable="true" type="xs:boolean" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="StockItemForAddStockWithIdList">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" name="stockItem" type="n11:StockItemForAddStockWithId" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="StockItemForUpdateStockWithIdList">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" name="stockItem" type="n11:StockItemForUpdateStockWithId" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="StockItemForAddStockWithSellerStockCode">
+        <xs:sequence>
+          <xs:element name="sellerStockCode" type="xs:string" />
+          <xs:element name="quantityToIncrease" type="xs:integer" />
+          <xs:element name="version" type="xs:long" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="StockItemForUpdateStockWithSellerStockCode">
+        <xs:sequence>
+          <xs:element name="sellerStockCode" type="xs:string" />
+          <xs:element name="quantity" type="xs:integer" />
+          <xs:element name="version" type="xs:long" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="StockItemForAddStockWithSellerStockCodeList">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" name="stockItem" type="n11:StockItemForAddStockWithSellerStockCode" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="StockItemForUpdateStockWithSellerStockCodeList">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" name="stockItem" type="n11:StockItemForUpdateStockWithSellerStockCode" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="StockItemForAddStockWithAttributes">
+        <xs:sequence>
+          <xs:element name="attributes" type="n11:StockAttributeList" />
+          <xs:element name="quantityToIncrease" type="xs:integer" />
+          <xs:element name="version" type="xs:long" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="StockItemForUpdateStockWithAttributes">
+        <xs:sequence>
+          <xs:element name="attributes" type="n11:StockAttributeList" />
+          <xs:element name="quantity" type="xs:integer" />
+          <xs:element name="version" type="xs:long" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="StockItemForAddStockWithAttributesList">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" name="stockItem" type="n11:StockItemForAddStockWithAttributes" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="StockItemForUpdateStockWithAttributesList">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" name="stockItem" type="n11:StockItemForUpdateStockWithAttributes" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="StockAttribute">
+        <xs:sequence>
+          <xs:element name="name" type="xs:string" />
+          <xs:element name="value" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="StockAttributeList">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" name="attribute" type="n11:StockAttribute" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="StockItemList">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" name="stockItem" type="n11:StockItem" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="StockDataWithProductId">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" name="stockItems" type="n11:StockItemList" />
+          <xs:element name="product" type="n11:ProductWithId" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ProductWithId">
+        <xs:sequence>
+          <xs:element name="id" type="xs:long" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="StockDataWithProductSellerCode">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" name="stockItems" type="n11:StockItemList" />
+          <xs:element name="product" type="n11:ProductWithSellerCode" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ProductWithIdAndStockId">
+        <xs:sequence>
+          <xs:element name="id" type="xs:long" />
+          <xs:element name="stockList" type="n11:StockItemForAddStockWithIdList" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ProductWithIdAndStockSellerCode">
+        <xs:sequence>
+          <xs:element name="id" type="xs:long" />
+          <xs:element name="stockList" type="n11:StockItemForAddStockWithSellerStockCodeList" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ProductWithIdAndStockAttributes">
+        <xs:sequence>
+          <xs:element name="id" type="xs:long" />
+          <xs:element name="stockItems" type="n11:StockItemForAddStockWithAttributesList" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ProductWithIdAndStockAttributesForUpdate">
+        <xs:sequence>
+          <xs:element name="id" type="xs:long" />
+          <xs:element name="stockItems" type="n11:StockItemForUpdateStockWithAttributesList" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ProductWithSellerCode">
+        <xs:sequence>
+          <xs:element name="sellerCode" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ProductAttribute">
+        <xs:sequence>
+          <xs:element name="id" type="xs:long" />
+          <xs:element name="name" type="xs:string" />
+          <xs:element name="value" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ProductAttributeRequest">
+        <xs:sequence>
+          <xs:element name="name" type="xs:string" />
+          <xs:element name="value" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ProductAttributeRequestList">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" name="attribute" type="n11:ProductAttributeRequest" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ProductAttributeList">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" name="attribute" type="n11:ProductAttribute" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ProductDiscount">
+        <xs:sequence>
+          <xs:element name="startDate" type="xs:string" />
+          <xs:element name="endDate" type="xs:string" />
+          <xs:element name="type" type="xs:string" />
+          <xs:element name="value" type="xs:string" />
+          <xs:element name="maxPurchaseCount" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ProductDiscountRequest">
+        <xs:sequence>
+          <xs:element name="startDate" type="xs:string" />
+          <xs:element name="endDate" type="xs:string" />
+          <xs:element name="type" type="xs:string" />
+          <xs:element name="value" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ProductSearch">
+        <xs:sequence>
+          <xs:element name="name" type="xs:string" />
+          <xs:element name="saleDate" type="n11:DateRange" />
+          <xs:element name="approvalStatus" type="n11:ProductStatus" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ProductQuestionSearch">
+        <xs:sequence>
+          <xs:element name="productId" type="xs:long" />
+          <xs:element name="buyerEmail" type="xs:string" />
+          <xs:element name="subject" type="xs:string" />
+          <xs:element name="status" type="n11:ProductQuestionStatus" />
+          <xs:element name="questionDate" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="DateRange">
+        <xs:sequence>
+          <xs:element name="startDate" type="xs:string" />
+          <xs:element name="endDate" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:simpleType name="ProductStatus">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="Active" />
+          <xs:enumeration value="Suspended" />
+          <xs:enumeration value="Prohibited" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="ProductQuestionStatus">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="CLOSED" />
+          <xs:enumeration value="OPEN" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:complexType name="ProductSkuList">
+        <xs:sequence>
+          <xs:element name="id" type="xs:long" />
+          <xs:element maxOccurs="unbounded" name="stockItem" type="n11:ProductSku" />
+          <xs:element name="productSellerCode" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ProductSkuRequestList">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" name="stockItem" type="n11:ProductSkuRequest" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="SellerProductDiscount">
+        <xs:sequence>
+          <xs:element name="discountType" type="xs:integer" />
+          <xs:element name="discountValue" type="xs:double" />
+          <xs:element name="discountStartDate" type="xs:string" />
+          <xs:element name="discountEndDate" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="BaseRequest">
+        <xs:sequence>
+          <xs:element name="authentication" type="n11:Authentication" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Authentication">
+        <xs:sequence>
+          <xs:element name="appKey" type="xs:string" />
+          <xs:element name="appSecret" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="PagingData">
+        <xs:sequence>
+          <xs:element name="currentPage" nillable="true" type="xs:int" />
+          <xs:element name="pageSize" nillable="true" type="xs:int" />
+          <xs:element name="totalCount" nillable="true" type="xs:long" />
+          <xs:element name="pageCount" nillable="true" type="xs:int" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="RequestPagingData">
+        <xs:sequence>
+          <xs:element name="currentPage" nillable="true" type="xs:int" />
+          <xs:element name="pageSize" nillable="true" type="xs:int" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="BaseResponse">
+        <xs:sequence>
+          <xs:element name="status" nillable="true" type="xs:string" />
+          <xs:element name="errorCode" nillable="true" type="xs:string" />
+          <xs:element name="errorMessage" nillable="true" type="xs:string" />
+          <xs:element name="errorCategory" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ResultInfo">
+        <xs:sequence>
+          <xs:element name="status" nillable="true" type="xs:string" />
+          <xs:element name="errorCode" nillable="true" type="xs:string" />
+          <xs:element name="errorMessage" nillable="true" type="xs:string" />
+          <xs:element name="errorCategory" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="UpdateDiscountValueByProductIdRequest">
+    <wsdl:part name="UpdateDiscountValueByProductIdRequest" element="tns:UpdateDiscountValueByProductIdRequest" />
+  </wsdl:message>
+  <wsdl:message name="GetProductQuestionDetailResponse">
+    <wsdl:part name="GetProductQuestionDetailResponse" element="tns:GetProductQuestionDetailResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateDiscountValueBySellerCodeResponse">
+    <wsdl:part name="UpdateDiscountValueBySellerCodeResponse" element="tns:UpdateDiscountValueBySellerCodeResponse" />
+  </wsdl:message>
+  <wsdl:message name="SearchProductsRequest">
+    <wsdl:part name="SearchProductsRequest" element="tns:SearchProductsRequest" />
+  </wsdl:message>
+  <wsdl:message name="GetProductListResponse">
+    <wsdl:part name="GetProductListResponse" element="tns:GetProductListResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetProductQuestionListRequest">
+    <wsdl:part name="GetProductQuestionListRequest" element="tns:GetProductQuestionListRequest" />
+  </wsdl:message>
+  <wsdl:message name="UpdateDiscountValueByProductIdResponse">
+    <wsdl:part name="UpdateDiscountValueByProductIdResponse" element="tns:UpdateDiscountValueByProductIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetProductListRequest">
+    <wsdl:part name="GetProductListRequest" element="tns:GetProductListRequest" />
+  </wsdl:message>
+  <wsdl:message name="GetProductQuestionDetailRequest">
+    <wsdl:part name="GetProductQuestionDetailRequest" element="tns:GetProductQuestionDetailRequest" />
+  </wsdl:message>
+  <wsdl:message name="SaveProductResponse">
+    <wsdl:part name="SaveProductResponse" element="tns:SaveProductResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetProductQuestionListResponse">
+    <wsdl:part name="GetProductQuestionListResponse" element="tns:GetProductQuestionListResponse" />
+  </wsdl:message>
+  <wsdl:message name="SaveProductAnswerRequest">
+    <wsdl:part name="SaveProductAnswerRequest" element="tns:SaveProductAnswerRequest" />
+  </wsdl:message>
+  <wsdl:message name="DeleteProductBySellerCodeRequest">
+    <wsdl:part name="DeleteProductBySellerCodeRequest" element="tns:DeleteProductBySellerCodeRequest" />
+  </wsdl:message>
+  <wsdl:message name="DeleteProductByIdResponse">
+    <wsdl:part name="DeleteProductByIdResponse" element="tns:DeleteProductByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="SearchProductsResponse">
+    <wsdl:part name="SearchProductsResponse" element="tns:SearchProductsResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateProductPriceByIdRequest">
+    <wsdl:part name="UpdateProductPriceByIdRequest" element="tns:UpdateProductPriceByIdRequest" />
+  </wsdl:message>
+  <wsdl:message name="UpdateProductPriceByIdResponse">
+    <wsdl:part name="UpdateProductPriceByIdResponse" element="tns:UpdateProductPriceByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetProductByProductIdRequest">
+    <wsdl:part name="GetProductByProductIdRequest" element="tns:GetProductByProductIdRequest" />
+  </wsdl:message>
+  <wsdl:message name="UpdateProductPriceBySellerCodeRequest">
+    <wsdl:part name="UpdateProductPriceBySellerCodeRequest" element="tns:UpdateProductPriceBySellerCodeRequest" />
+  </wsdl:message>
+  <wsdl:message name="GetProductBySellerCodeRequest">
+    <wsdl:part name="GetProductBySellerCodeRequest" element="tns:GetProductBySellerCodeRequest" />
+  </wsdl:message>
+  <wsdl:message name="UpdateDiscountValueBySellerCodeRequest">
+    <wsdl:part name="UpdateDiscountValueBySellerCodeRequest" element="tns:UpdateDiscountValueBySellerCodeRequest" />
+  </wsdl:message>
+  <wsdl:message name="DeleteProductByIdRequest">
+    <wsdl:part name="DeleteProductByIdRequest" element="tns:DeleteProductByIdRequest" />
+  </wsdl:message>
+  <wsdl:message name="GetProductBySellerCodeResponse">
+    <wsdl:part name="GetProductBySellerCodeResponse" element="tns:GetProductBySellerCodeResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteProductBySellerCodeResponse">
+    <wsdl:part name="DeleteProductBySellerCodeResponse" element="tns:DeleteProductBySellerCodeResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateProductPriceBySellerCodeResponse">
+    <wsdl:part name="UpdateProductPriceBySellerCodeResponse" element="tns:UpdateProductPriceBySellerCodeResponse" />
+  </wsdl:message>
+  <wsdl:message name="SaveProductRequest">
+    <wsdl:part name="SaveProductRequest" element="tns:SaveProductRequest" />
+  </wsdl:message>
+  <wsdl:message name="GetProductByProductIdResponse">
+    <wsdl:part name="GetProductByProductIdResponse" element="tns:GetProductByProductIdResponse" />
+  </wsdl:message>
+  <wsdl:portType name="ProductServicePort">
+    <wsdl:operation name="UpdateDiscountValueByProductId">
+      <wsdl:input name="UpdateDiscountValueByProductIdRequest" message="tns:UpdateDiscountValueByProductIdRequest" />
+      <wsdl:output name="UpdateDiscountValueByProductIdResponse" message="tns:UpdateDiscountValueByProductIdResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="GetProductQuestionDetail">
+      <wsdl:input name="GetProductQuestionDetailRequest" message="tns:GetProductQuestionDetailRequest" />
+      <wsdl:output name="GetProductQuestionDetailResponse" message="tns:GetProductQuestionDetailResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateDiscountValueBySellerCode">
+      <wsdl:input name="UpdateDiscountValueBySellerCodeRequest" message="tns:UpdateDiscountValueBySellerCodeRequest" />
+      <wsdl:output name="UpdateDiscountValueBySellerCodeResponse" message="tns:UpdateDiscountValueBySellerCodeResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="SearchProducts">
+      <wsdl:input name="SearchProductsRequest" message="tns:SearchProductsRequest" />
+      <wsdl:output name="SearchProductsResponse" message="tns:SearchProductsResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="GetProductList">
+      <wsdl:input name="GetProductListRequest" message="tns:GetProductListRequest" />
+      <wsdl:output name="GetProductListResponse" message="tns:GetProductListResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="GetProductQuestionList">
+      <wsdl:input name="GetProductQuestionListRequest" message="tns:GetProductQuestionListRequest" />
+      <wsdl:output name="GetProductQuestionListResponse" message="tns:GetProductQuestionListResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveProduct">
+      <wsdl:input name="SaveProductRequest" message="tns:SaveProductRequest" />
+      <wsdl:output name="SaveProductResponse" message="tns:SaveProductResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveProductAnswer">
+      <wsdl:input name="SaveProductAnswerRequest" message="tns:SaveProductAnswerRequest" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteProductBySellerCode">
+      <wsdl:input name="DeleteProductBySellerCodeRequest" message="tns:DeleteProductBySellerCodeRequest" />
+      <wsdl:output name="DeleteProductBySellerCodeResponse" message="tns:DeleteProductBySellerCodeResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteProductById">
+      <wsdl:input name="DeleteProductByIdRequest" message="tns:DeleteProductByIdRequest" />
+      <wsdl:output name="DeleteProductByIdResponse" message="tns:DeleteProductByIdResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateProductPriceById">
+      <wsdl:input name="UpdateProductPriceByIdRequest" message="tns:UpdateProductPriceByIdRequest" />
+      <wsdl:output name="UpdateProductPriceByIdResponse" message="tns:UpdateProductPriceByIdResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="GetProductByProductId">
+      <wsdl:input name="GetProductByProductIdRequest" message="tns:GetProductByProductIdRequest" />
+      <wsdl:output name="GetProductByProductIdResponse" message="tns:GetProductByProductIdResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateProductPriceBySellerCode">
+      <wsdl:input name="UpdateProductPriceBySellerCodeRequest" message="tns:UpdateProductPriceBySellerCodeRequest" />
+      <wsdl:output name="UpdateProductPriceBySellerCodeResponse" message="tns:UpdateProductPriceBySellerCodeResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="GetProductBySellerCode">
+      <wsdl:input name="GetProductBySellerCodeRequest" message="tns:GetProductBySellerCodeRequest" />
+      <wsdl:output name="GetProductBySellerCodeResponse" message="tns:GetProductBySellerCodeResponse" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ProductServicePortSoap11" type="tns:ProductServicePort">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="UpdateDiscountValueByProductId">
+      <soap:operation soapAction="" />
+      <wsdl:input name="UpdateDiscountValueByProductIdRequest">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="UpdateDiscountValueByProductIdResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProductQuestionDetail">
+      <soap:operation soapAction="" />
+      <wsdl:input name="GetProductQuestionDetailRequest">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetProductQuestionDetailResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateDiscountValueBySellerCode">
+      <soap:operation soapAction="" />
+      <wsdl:input name="UpdateDiscountValueBySellerCodeRequest">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="UpdateDiscountValueBySellerCodeResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SearchProducts">
+      <soap:operation soapAction="" />
+      <wsdl:input name="SearchProductsRequest">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="SearchProductsResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProductList">
+      <soap:operation soapAction="" />
+      <wsdl:input name="GetProductListRequest">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetProductListResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProductQuestionList">
+      <soap:operation soapAction="" />
+      <wsdl:input name="GetProductQuestionListRequest">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetProductQuestionListResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveProduct">
+      <soap:operation soapAction="" />
+      <wsdl:input name="SaveProductRequest">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="SaveProductResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveProductAnswer">
+      <soap:operation soapAction="" />
+      <wsdl:input name="SaveProductAnswerRequest">
+        <soap:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteProductBySellerCode">
+      <soap:operation soapAction="" />
+      <wsdl:input name="DeleteProductBySellerCodeRequest">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="DeleteProductBySellerCodeResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteProductById">
+      <soap:operation soapAction="" />
+      <wsdl:input name="DeleteProductByIdRequest">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="DeleteProductByIdResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateProductPriceById">
+      <soap:operation soapAction="" />
+      <wsdl:input name="UpdateProductPriceByIdRequest">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="UpdateProductPriceByIdResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProductByProductId">
+      <soap:operation soapAction="" />
+      <wsdl:input name="GetProductByProductIdRequest">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetProductByProductIdResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateProductPriceBySellerCode">
+      <soap:operation soapAction="" />
+      <wsdl:input name="UpdateProductPriceBySellerCodeRequest">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="UpdateProductPriceBySellerCodeResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProductBySellerCode">
+      <soap:operation soapAction="" />
+      <wsdl:input name="GetProductBySellerCodeRequest">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetProductBySellerCodeResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ProductServicePortService">
+    <wsdl:port name="ProductServicePortSoap11" binding="tns:ProductServicePortSoap11">
+      <soap:address location="https://api.n11.com/ws/productService/" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
