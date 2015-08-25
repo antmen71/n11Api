@@ -34,8 +34,8 @@ namespace n11Api
 
 
 
-        static string apiAnahtari1;
-        static string apiSifresi1;
+        public static string apiAnahtari1;
+         public static string apiSifresi1;
 
 
         
@@ -47,8 +47,7 @@ namespace n11Api
             apiSifresi1 = apiSifresi;
         }
 
-        ProductBasic[] products = getProds();
-        GetTopLevelCategoriesResponse categories = getTopCat();
+ 
 
 
 
@@ -57,7 +56,8 @@ namespace n11Api
 
         private void Form1_Load(object sender, EventArgs e)
         {
- 
+            ProductBasic[] products = getProds();
+            GetTopLevelCategoriesResponse categories = getTopCat();
 
             foreach (var item in categories.categoryList)
             {
@@ -80,10 +80,10 @@ namespace n11Api
                 listBox2.Items.Add(new ProductBasic() { id = prod.id, title = prod.id + "-(" + prod.productSellerCode.ToString() + ")-" + prod.title });
             }
 
-            txtprodPrepDay.Text = "21";
-            txtUrunDurumu.Text = "1";
-            txtKargoSablonu.Text = "dizlik";
-            txtStokMiktari.Text = "1";
+            txtprodPrepDay.Text = "";
+            txtUrunDurumu.Text = "";
+            txtKargoSablonu.Text = "";
+            txtStokMiktari.Text = "";
             label2.Text = "Ürünler (" + products.Length.ToString() + ")";
 
         }
